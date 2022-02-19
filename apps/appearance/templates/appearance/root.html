@@ -1,0 +1,77 @@
+{% load i18n %}
+{% load static %}
+
+{% load appearance_tags %}
+{% load navigation_tags %}
+{% load smart_settings_tags %}
+
+{% spaceless %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+    <head>
+        {% include 'appearance/partials/meta_tags.html' %}
+        <title>
+            {% block base_title %}
+                {% block title %}{% endblock %} :: {% block project_name %}{% smart_setting 'COMMON_PROJECT_TITLE' %}{% endblock %}
+            {% endblock base_title %}
+        </title>
+
+        <style id="style-javascript"></style>
+        {% appearance_app_templates template_name='head' %}
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        <div class="hidden-xs hidden-sm" id="ajax-spinner" style="display: none;"></div>
+        {% if appearance_type == 'plain' %}
+            {% block content_plain %}{% endblock %}
+        {% else %}
+            <div id="menu-topbar">
+                {% include 'appearance/menus/menu_topbar.html' %}
+            </div>
+            <div id="menu-main">
+                {% include 'appearance/menus/menu_main.html' %}
+            </div>
+            <div id="appearance-main-viewport">
+                <div class="row zero-margin">
+                    <div class="col-xs-12">
+                        <div id="ajax-header"></div>
+                        <div id="ajax-content"></div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="modal fade" id="modal-server-error" role="dialog" tabindex="-1" >
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{% trans 'Server error' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans 'Close' %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script id="template-error" type="text/x-template">
+            <div class="content">
+                <h2 class="title">{% blocktrans %}Server communication error{% endblocktrans %}</h2>
+                <div class="inner">
+                    <p>{% blocktrans %}Check you network connection and try again in a few moments.{% endblocktrans %}</p>
+                </div>
+            </div>
+        </script>
+
+        <script>
+            {# Transfer variable from Django to javascript #}
+            const initialURL = '{% url home_view %}';
+            const djangoDEBUG = {% if debug %}true{% else %}false{% endif %};
+        </script>
+
+        {% appearance_app_templates template_name='foot' %}
+    </body>
+</html>
+{% endspaceless %}
