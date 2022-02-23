@@ -45,20 +45,20 @@ All Document Page
     [Teardown]  Close Browser
 
 
-All Document Page Complete Tag
-    Open Browser    http://localhost/#/tags/documents/2/tags/   edge
-    Login as Stuff Username
-    Wait Until Element Is Visible  class:label-tag
-    Element Text Should Be  class:label-tag   เอกสารครบ
-    [Teardown]  Close Browser
+# All Document Page Complete Tag
+#     Open Browser    http://localhost/#/tags/documents/2/tags/   edge
+#     Login as Stuff Username
+#     Wait Until Element Is Visible  class:label-tag
+#     Element Text Should Be  class:label-tag   เอกสารครบ
+#     [Teardown]  Close Browser
 
 
-All Document Page Inomplete Tag
-    Open Browser    http://localhost/#/tags/documents/1/tags/   edge
-    Login as Stuff Username
-    Wait Until Element Is Visible  class:label-tag
-    Element Text Should Be  class:label-tag   เอกสารไม่ครบ
-    [Teardown]  Close Browser
+# All Document Page Inomplete Tag
+#     Open Browser    http://localhost/#/tags/documents/1/tags/   edge
+#     Login as Stuff Username
+#     Wait Until Element Is Visible  class:label-tag
+#     Element Text Should Be  class:label-tag   เอกสารไม่ครบ
+#     [Teardown]  Close Browser
 
 
 *** Keywords ***
