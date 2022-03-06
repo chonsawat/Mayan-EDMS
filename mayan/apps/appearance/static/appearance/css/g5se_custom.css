@@ -1,8 +1,8 @@
 @media screen {
     /* Logo Size */
     #custom-logo {
-        width: 60px;
-        height: 60px;
+        width: 64px;
+        height: 64px;
     }
 
 }
@@ -21,8 +21,7 @@
     /* Text center vertical */
     a.navbar-brand{
         float: left;
-        height: 60px;
-        padding: 20.5px 15px 18.5px 15px;
+        padding: 22.5px 15px 18.5px 15px;
         font-size: 19px;
         line-height: 21px;
     }
