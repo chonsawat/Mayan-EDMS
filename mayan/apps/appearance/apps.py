@@ -62,7 +62,7 @@ class AppearanceApp(MayanAppConfig):
         ModelCopy(
             model=Theme, bind_link=True, register_permission=True
         ).add_fields(
-            field_names=('label', 'stylesheet',),
+            field_names=('label', 'logo', 'stylesheet',),
         )
 
         EventModelRegistry.register(model=Theme)
