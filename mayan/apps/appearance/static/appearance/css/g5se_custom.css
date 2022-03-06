@@ -21,14 +21,14 @@
     /* Text center vertical */
     a.navbar-brand{
         float: left;
-        padding: 22.5px 15px 18.5px 15px;
+        padding: 23.5px 15px 18.5px 15px;
         font-size: 19px;
         line-height: 21px;
     }
 
-    /* .navbar.navbar-default {
-        background-color: #660000;
+    .navbar.navbar-default {
+        background-color: #000000;
         border-color: transparent;
-    } */
+    }
 
 }
