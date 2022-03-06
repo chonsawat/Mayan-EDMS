@@ -1,4 +1,30 @@
-#custom-logo {
-    width: 60px;
-    height: 60px;
+@media screen {
+    /* Logo Size */
+    #custom-logo {
+        width: 60px;
+        height: 60px;
+    }
+
+}
+
+@media screen {
+    /* Margin Logo */
+    .container>
+        .navbar-header, .container-fluid>
+        .navbar-header, .container>
+        .navbar-collapse, .container-fluid>
+        .navbar-collapse {
+        margin-right: 0;
+        margin-left: 2%;
+    }
+
+    /* Text center vertical */
+    a.navbar-brand{
+        float: left;
+        height: 60px;
+        padding: 20.5px 15px 18.5px 15px;
+        font-size: 19px;
+        line-height: 21px;
+    }
+
 }
