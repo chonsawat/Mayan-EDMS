@@ -21,7 +21,9 @@ x-mayan-container:
     # Replace with the line below when using RabbitMQ
     # MAYAN_DOCKER_WAIT: "${MAYAN_DATABASE_HOST:-postgresql}:5432 redis:6379 rabbitmq:5672"
   
+  # image: ${MAYAN_DOCKER_IMAGE_NAME:-mayanedms/mayanedms}:${MAYAN_DOCKER_IMAGE_TAG:-s4.1} #TODO: Original Docker Images
   image: chonsawat/g5se:latest #TODO: ${MAYAN_DOCKER_IMAGE_NAME:-mayanedms/mayanedms}:${MAYAN_DOCKER_IMAGE_TAG:-s4.1}
+  # image: chonsawat/mayan:latest #TODO: ${MAYAN_DOCKER_IMAGE_NAME:-mayanedms/mayanedms}:${MAYAN_DOCKER_IMAGE_TAG:-s4.1}
   networks:
     - bridge
   restart: unless-stopped
@@ -36,10 +38,6 @@ networks:
     driver: bridge
 
 services:
-  # g5se:
-  #   build: ./
-  #   image: chonsawat/g5se:latest
-
   app:
     <<: *mayan-container
     labels:
@@ -53,7 +51,11 @@ services:
     ports:
       - "80:8000"
 
-    image: chonsawat/g5se:latest
+    # image: ${MAYAN_DOCKER_IMAGE_NAME:-mayanedms/mayanedms}:${MAYAN_DOCKER_IMAGE_TAG:-s4.1} #TODO: Original Docker Image 
+    image: chonsawat/g5se:latest #TODO: chonsawat/g5se:lastest 
+    # image: chonsawat/mayan:latest #TODO: chonsawat/g5se:lastest 
+    # working_dir: "/Mayan-EDMS"
+    # command: bash -c 'source ~/.virtualenvs/mayan-edms-4.2.1/bin/activate && make runserver'
 
   postgresql:
     command:
@@ -245,7 +247,7 @@ services:
       - ${MAYAN_RABBITMQ_VOLUME:-rabbitmq}:/var/lib/rabbitmq
 
 volumes:
-  app:
+  app: 
   postgres:
   mountindex:
   rabbitmq:
