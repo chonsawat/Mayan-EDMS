@@ -7,7 +7,7 @@ from .models import Theme, UserThemeSetting
 
 class ThemeForm(forms.ModelForm):
     class Meta:
-        fields = ('label', 'logo','stylesheet')
+        fields = ('label', 'logo','stylesheet','navbarcolor','menucolor')
         model = Theme
 
 
