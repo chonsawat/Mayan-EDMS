@@ -33,7 +33,10 @@ def appearance_app_templates(context, template_name):
                 app_template = get_template(
                     '{}/app/{}.html'.format(app.label, template_name)
                 )
-                context['custom_logo'] = f"{Theme.objects.get(id=1).logo}"
+                try:
+                    context['custom_logo'] = f"{Theme.objects.get(id=1).logo}"
+                except:
+                    context['custom_logo'] = "https://e7.pngegg.com/pngimages/829/318/png-clipart-sun-sunscreen-cartoon-cartoon-sun-cartoon-character-child.png"
                 app_template_output = app_template.render(
                     request=context.get('request')
                 )
