@@ -31,7 +31,7 @@
         {% if previous %}
             <input name="previous" type="hidden" value="{{ previous }}" />
         {% endif %}
-
+ 
         {% for hidden_field in hidden_fields %}
            {{ hidden_field.as_hidden }}
         {% endfor %}
@@ -52,7 +52,6 @@
                                 {% endfor %}
                             </tr>
                 {% endif %}
-
                 {% for form in formset.forms %}
                     {% include 'appearance/generic_form_instance.html' %}
                 {% empty %}

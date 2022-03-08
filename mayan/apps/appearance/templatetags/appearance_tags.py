@@ -30,6 +30,8 @@ def appearance_app_templates(context, template_name):
                 app_template = get_template(
                     '{}/app/{}.html'.format(app.label, template_name)
                 )
+
+                context['custom_logo'] = "http://pngimg.com/uploads/twitter/twitter_PNG3.png"
                 app_template_output = app_template.render(
                     request=context.get('request')
                 )
