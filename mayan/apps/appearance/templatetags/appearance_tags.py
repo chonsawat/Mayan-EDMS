@@ -10,6 +10,9 @@ from django.utils.translation import ugettext_lazy as _
 
 from ..literals import COMMENT_APP_TEMPLATE_CACHE_DISABLE
 
+# Chonsawat TODO:
+from ..models import Theme
+
 app_templates_cache = {}
 register = Library()
 
@@ -30,8 +33,7 @@ def appearance_app_templates(context, template_name):
                 app_template = get_template(
                     '{}/app/{}.html'.format(app.label, template_name)
                 )
-
-                context['custom_logo'] = "http://pngimg.com/uploads/twitter/twitter_PNG3.png"
+                context['custom_logo'] = f"{Theme.objects.get(id=1).logo}"
                 app_template_output = app_template.render(
                     request=context.get('request')
                 )
