@@ -49,16 +49,17 @@
                 {# action menu #}
                 {% navigation_resolve_menus names='object,secondary' sort_results=True as action_menus_link_results %}
                 {% if action_menus_link_results %}
+                                
                     <div class="pull-right btn-group" id="menu-actions">
                         {% include 'navigation/actions_dropdown.html' %}
                     </div>
                     <div class="clearfix"></div>
                 {% endif %}
-
+                
                 {% block content %}{% endblock %}
                 {% block footer %}{% endblock %}
             </div>
-
+            
             {% if sidebar_menus_link_results %}
                 <div id="sidebar">
                     <ul class="list-group">

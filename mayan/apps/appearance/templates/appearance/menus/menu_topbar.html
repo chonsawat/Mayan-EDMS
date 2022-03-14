@@ -13,6 +13,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                
+                <p style="color: white;"> Request: {% if custom_logo %}{{custom_logo}} {% else %} Fail To Load Img {%endif%}</p>
+
+                <a href="{% url home_view %}"> <img id="custom-logo" class="navbar-brand" src="{% if custom_logo %} {{custom_logo}} {% else %} https://www.freeiconspng.com/thumbs/error-icon/error-icon-4.png {% endif %}"> </a>
                 <a class="navbar-brand" href="{% url home_view %}"> Version Depveloper </a>
             </div>
 
