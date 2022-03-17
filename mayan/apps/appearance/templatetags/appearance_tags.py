@@ -16,6 +16,19 @@ from ..models import Theme
 app_templates_cache = {}
 register = Library()
 
+def create_or_load_default_theme():
+    default_id_create_or_load = 1
+    create_logo = 'https://upload.wikimedia.org/wikipedia/commons/0/0e/White_circle.png'
+    try:
+        Theme.objects.get(id=default_id_create_or_load)
+        print(f"Load: {Theme.objects.get(id=default_id_create_or_load)} Theme")
+    except:
+        Theme.objects.create(id=default_id_create_or_load, label='Original', logo=create_logo)
+        print(f"Create: {Theme.objects.get(id=default_id_create_or_load)} Theme")
+
+
+create_or_load_default_theme()
+
 
 @register.simple_tag(takes_context=True)
 def appearance_app_templates(context, template_name):
