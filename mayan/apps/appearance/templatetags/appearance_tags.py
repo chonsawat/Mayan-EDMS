@@ -49,7 +49,7 @@ def appearance_app_templates(context, template_name):
                 try:
                     context['custom_logo'] = f"{Theme.objects.get(id=1).logo}"
                 except:
-                    context['custom_logo'] = "https://e7.pngegg.com/pngimages/829/318/png-clipart-sun-sunscreen-cartoon-cartoon-sun-cartoon-character-child.png"
+                    print(f"Chonsawat aleart at: apps/appearance/templatetags/appearance_tags.py")
                 app_template_output = app_template.render(
                     request=context.get('request')
                 )
@@ -90,9 +90,10 @@ def appearance_get_form_media_js(form):
 def appearance_get_icon(icon_path):
     return import_string(dotted_path=icon_path).render()
 
-
+import time
 @register.simple_tag
 def appearance_get_user_theme_stylesheet(user):
+    print(f'\n\n Heeeeeeeeeeeeeeeeeeeeee : { time.strftime("%m/%d/%Y, %H:%M:%S", time.localtime()) }\n\n') # TODO: Chonsawat Logo Doing
     User = get_user_model()
 
     if user and user.is_authenticated:
@@ -102,7 +103,9 @@ def appearance_get_user_theme_stylesheet(user):
             # User had a setting assigned which was later deleted.
             return ''
         else:
+            print("Chonsawat notify at: apps/apperance/templatetags/appearance_tag.py")
             if theme:
+                print(f"{user.theme_settings.theme.logo}")
                 return user.theme_settings.theme.stylesheet
 
     return ''
