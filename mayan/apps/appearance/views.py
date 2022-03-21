@@ -10,12 +10,28 @@ from mayan.apps.views.generics import (
 from .forms import ThemeForm, UserThemeSettingForm, UserThemeSettingForm_view
 from .icons import icon_theme_setup
 from .links import link_theme_create
-from .models import Theme
+from .models import Theme, UserThemeSetting
 from .permissions import (
     permission_theme_create, permission_theme_delete, permission_theme_edit,
     permission_theme_view
 )
 
+from django.contrib.auth import get_user_model
+from django.db import models
+
+    
+def get_object(self):
+    User = get_user_model()
+    users = User.objects.all()
+    for user in users:
+        try:
+            UserThemeSetting.objects.get(user=user)
+            print(f"User {user}: Load Original theme complete!!")
+        except:
+            print(f"User {user}: Create new with Original theme!!")
+            original_theme = Theme.objects.get(id=1)
+            UserThemeSetting.objects.create(user=user, theme=original_theme)
+    return self.request.user.theme_settings
 
 class CurrentUserThemeSettingsDetailsView(SimpleView):
     template_name = 'appearance/generic_form.html'

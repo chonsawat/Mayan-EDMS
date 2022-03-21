@@ -80,6 +80,27 @@ def appearance_get_choice_value(field):
     except KeyError:
         return _('None')
 
+## Try to something
+@register.simple_tag
+def appearance_get_user_theme_script():
+    try:
+        obj = Theme.objects.get(status_theme='On')
+        context = obj.brand_name +  "|" + obj.logo_path + "|" + obj.color_font_header + "|" + obj.background_color_header + "|" + obj.background_color_menu + "|" + obj.background_color_header_panel + "|" + obj.background_website + "|" + obj.background_menu_dropdown + "|" + obj.btn_color_primary + "|" + obj.btn_color_danger + "|" + obj.btn_color_success + "|" + obj.btn_color_default + "|" + str(obj.font_size_header) + "|" + str(obj.font_size_menu) + "|" + str(obj.font_size_content_title)+ "|" + obj.menu_text_color
+    except Theme.DoesNotExist:
+        context = "Mayan-EDMS||#ffffff|#2f3c4f|#2f3c4f|#2f3c4f|#ffffff|#2f3c4f|#1b232e|#fe0000|#4aaa97|#95a5a6|19|15|50|#ffffff"    
+    
+    return context
+
+
+@register.simple_tag
+def color_background_nav():
+    try:
+        obj = Theme.objects.get(status_theme='On')
+        context = obj.background_color_header
+    except Theme.DoesNotExist:
+        return '#2f3c4f'
+    return context
+##-----------END-----------
 
 @register.filter
 def appearance_get_form_media_js(form):

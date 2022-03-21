@@ -11,7 +11,12 @@ from mayan.apps.events.classes import EventManagerSave
 from mayan.apps.events.decorators import method_event
 
 from .events import event_theme_created, event_theme_edited
+from colorful.fields import RGBColorField
 
+status = (
+    ('On','On'),
+    ('Off', 'Off'),
+)
 
 class Theme(ExtraDataModelMixin, models.Model):
     label = models.CharField(
@@ -34,16 +39,23 @@ class Theme(ExtraDataModelMixin, models.Model):
         ), verbose_name=_('Stylesheet')
     )
 
-    navbarcolor = models.CharField(
-        blank=True, help_text=_(
-            'Choose a color to change the navbar.'
-        ), max_length=128, verbose_name=_('Navbar Color')
+    navbarcolor = RGBColorField(
+        blank=True, 
+        help_text=_('Choose a color to change the navbar.'), 
+        verbose_name=_('Navbar Color')
     )
 
-    menucolor = models.CharField(
-        blank=True, help_text=_(
-            'Choose a color to change the Menu.'
-        ), max_length=128, verbose_name=_('Menu Color')
+    menucolor = RGBColorField(
+        blank=True, 
+        help_text=_('Choose a color to change the Menu.'),
+        verbose_name=_('Menu Color')
+    )
+
+    statustheme = models.CharField(
+        max_length=100,
+        choices=status,
+        default=status[1][0],
+        verbose_name=_('Status Theme')
     )
 
     class Meta:
@@ -76,6 +88,8 @@ class Theme(ExtraDataModelMixin, models.Model):
         self.stylesheet = bleach.clean(
             text=self.stylesheet, tags=('style',)
         )
+        if(self.status_theme == "On"):
+           obj = Theme.objects.filter(status_theme='On').update(status_theme='Off')
         super().save(*args, **kwargs)
 
 
