@@ -36,16 +36,16 @@ class Theme(ExtraDataModelMixin, models.Model):
         ), verbose_name=_('Stylesheet')
     )
 
-    navbarcolor = models.CharField(
-        blank=True, help_text=_(
-            'Choose a color to change the navbar.'
-        ), max_length=128, verbose_name=_('Navbar Color')
+    navbarcolor = RGBColorField(
+        blank=True, 
+        help_text=_('Choose a color to change the navbar.'), 
+        verbose_name=_('Navbar Color')
     )
 
-    menucolor = models.CharField(
-        blank=True, help_text=_(
-            'Choose a color to change the Menu.'
-        ), max_length=128, verbose_name=_('Menu Color')
+    menucolor = RGBColorField(
+        blank=True, 
+        help_text=_('Choose a color to change the Menu.'),
+        verbose_name=_('Menu Color')
     )
 
     class Meta:
