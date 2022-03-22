@@ -67,12 +67,23 @@
             .btn-default{ /* สีปุ่มทั่วไป  
                 background-color: yellow;
             }*/
-
-            body{  
-                background-color: yellow;
-            }
         }
 </style>
+
+<!-- TODO: Chonsawat Script -->
+<script>
+        
+    var context = '{% get_theme_context_default %}'.split('|');
+    console.log(context);
+    
+    var data = {
+        logo: context[0]
+    }
+
+    console.log($('#custom-logo').src);
+    $("#custom-logo").attr('src', `${data.logo}`);
+
+</script>
 
 
 {% if appearance_type == 'plain' %}
