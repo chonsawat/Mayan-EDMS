@@ -6,12 +6,14 @@ from django.urls import reverse
 from django.utils.encoding import force_text
 from django.utils.translation import ugettext_lazy as _
 
+from colorful.fields import RGBColorField
+
 from mayan.apps.databases.model_mixins import ExtraDataModelMixin
 from mayan.apps.events.classes import EventManagerSave
 from mayan.apps.events.decorators import method_event
 
 from .events import event_theme_created, event_theme_edited
-from colorful.fields import RGBColorField
+
 
 status = (
     ('On','On'),
@@ -51,12 +53,12 @@ class Theme(ExtraDataModelMixin, models.Model):
         verbose_name=_('Menu Color')
     )
 
-    statustheme = models.CharField(
-        max_length=100,
-        choices=status,
-        default=status[1][0],
-        verbose_name=_('Status Theme')
-    )
+    # status_theme = models.CharField(
+    #     max_length=100,
+    #     choices=status,
+    #     default=status[1][0],
+    #     verbose_name=_('Status Theme')
+    # )
 
     class Meta:
         ordering = ('label',)
@@ -88,8 +90,7 @@ class Theme(ExtraDataModelMixin, models.Model):
         self.stylesheet = bleach.clean(
             text=self.stylesheet, tags=('style',)
         )
-        if(self.status_theme == "On"):
-           obj = Theme.objects.filter(status_theme='On').update(status_theme='Off')
+
         super().save(*args, **kwargs)
 
 

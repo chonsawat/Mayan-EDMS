@@ -4,7 +4,7 @@
 {% load smart_settings_tags %}
 
 {% spaceless %}
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav id="headerTopMenu" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button aria-expanded="false" aria-controls="navbar" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" type="button">
@@ -15,9 +15,11 @@
                 </button>
                 
                 <!-- <p style="color: white;"> Request: {% if custom_logo %}{{custom_logo}} {% else %} Fail To Load Img {%endif%}</p> -->
-
-                <a href="{% url home_view %}"> <img id="custom-logo" class="navbar-brand" src="{% if custom_logo %} {{custom_logo}} {% else %} https://www.freeiconspng.com/thumbs/error-icon/error-icon-4.png {% endif %}"> </a>
-                <a class="navbar-brand" href="{% url home_view %}"> Version Depveloper </a>
+                <div id="dataNavber">
+                    <a href="{% url home_view %}"> <img id="custom-logo" class="navbar-brand" src="{% if custom_logo %} {{custom_logo}} {% else %} https://www.freeiconspng.com/thumbs/error-icon/error-icon-4.png {% endif %}"> </a>
+                    <a class="navbar-brand" href="{% url home_view %}"> Version Depveloper </a>
+                </div>
+                
             </div>
 
             <div id="navbar" class="navbar-collapse collapse">
