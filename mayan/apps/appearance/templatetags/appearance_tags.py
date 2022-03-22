@@ -16,9 +16,19 @@ from ..models import Theme
 app_templates_cache = {}
 register = Library()
 
+@register.simple_tag
+def get_theme_context_default():
+    try:
+        logo = f"{Theme.objects.get(id=1).logo}"
+    except:
+        print(f"Chonsawat aleart at: apps/appearance/templatetags/appearance_tags.py in get_logo_default")
+        return ''
+
+    return f"{logo}|{logo}"
+
 def create_or_load_default_theme():
     default_id_create_or_load = 1
-    create_logo = 'https://upload.wikimedia.org/wikipedia/commons/0/0e/White_circle.png'
+    create_logo = 'https://lh3.googleusercontent.com/fife/AAWUweUyRNSI4L_WQCZ75M6G2ddiKyXGDXdUMn3Y4pyDjC9-x3j9sFwyGM7QYLkMbvyPqTaNaoVmMBNKVMPHMZ9qYMW8G0SCWCtAu9_m2xMd5pyS50vbMrgsW_waEBwTG1_zBY6y4QUQzXXkU6dibFrhjRXjKg18g-mTOLI_94dvwDWcZ7KInpe2qjHNwxexJnL_w8hYt1Ue7Iu_ANEkp3Eed4bzZOmRl2OTc_vQIHXr4m_BgrzWVCiii_iiGKkiDUzxTbBGerQjLCru8JGs2XTQZ0uyGLk2b5rvryDX0Uj-vdHTkQQLya5mcwiFcO3LqUdTXtxGoBz_fxNMzQPAZS4xOp9A-tzXtnA1z3Mj5aEu7Zay3uv7qlj_KHYfptV4Y1DLcZiGgBIPVsBkjJX7fXsgzNuCaYWEimsZLdJHF2pQKktXEf1Pf2QVJN_TSsdaPvgMVNGr56s1V3tGEzHmLBxOKwJdxxpEDv-55EBG2J-0QyuCy483Nn1-ELLoJoxv78z_ZbsmwuiCA9MtJdteiH4AIwaJcrGfz_PQ3bLyeQzcGUlylH8vwrewb12WbjDz6arTj0ZOYDYD_eslmILW7PWQLyiLqXPCZFwjwFbr66mFUq5HtrPvoARlNkoiUsFUvgPdj7witCPXDunuNJbcHts2QkYx-fh3YmuFFBGONKYW8uSCohpNzFJm53FtTyh9EVMFPXZnA6qUoy_bdsgWSliJi5fwx-5jO_kfRYYnw0nhnsa6GX5cSikIvNTXymBBwNEJMEUoQSPTaXK9KzvOiBTZ2uVkPdAUl9Cfry6Ym8Rn_as=w1920-h933'
     try:
         Theme.objects.get(id=default_id_create_or_load)
         print(f"Load: {Theme.objects.get(id=default_id_create_or_load)} Theme")
@@ -46,10 +56,7 @@ def appearance_app_templates(context, template_name):
                 app_template = get_template(
                     '{}/app/{}.html'.format(app.label, template_name)
                 )
-                try:
-                    context['custom_logo'] = f"{Theme.objects.get(id=1).logo}"
-                except:
-                    print(f"Chonsawat aleart at: apps/appearance/templatetags/appearance_tags.py")
+                context['custom_logo_django'] = get_theme_context_default().split('|')[0]
                 app_template_output = app_template.render(
                     request=context.get('request')
                 )
@@ -93,7 +100,7 @@ def appearance_get_icon(icon_path):
 import time
 @register.simple_tag
 def appearance_get_user_theme_stylesheet(user):
-    print(f'\n\n Heeeeeeeeeeeeeeeeeeeeee : { time.strftime("%m/%d/%Y, %H:%M:%S", time.localtime()) }\n\n') # TODO: Chonsawat Logo Doing
+    print(f'\n\nappearance_get_user_theme_stylesheet : { time.strftime("%m/%d/%Y, %H:%M:%S", time.localtime()) }\n\n') # TODO: Chonsawat Logo Doing
     User = get_user_model()
 
     if user and user.is_authenticated:
@@ -103,7 +110,7 @@ def appearance_get_user_theme_stylesheet(user):
             # User had a setting assigned which was later deleted.
             return ''
         else:
-            print("Chonsawat notify at: apps/apperance/templatetags/appearance_tag.py")
+            print("Chonsawat notify at: apps/apperance/templatetags/appearance_tag.py --method appearance_get_user_theme_stylesheet")
             if theme:
                 print(f"{user.theme_settings.theme.logo}")
                 return user.theme_settings.theme.stylesheet
