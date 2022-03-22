@@ -107,6 +107,16 @@ def color_background_nav():
     except Theme.DoesNotExist:
         return '#2f3c4f'
     return context
+    
+@register.simple_tag
+def color_background_menu():
+    try:
+        obj = Theme.objects.get(id=1)
+        context = obj.menucolor
+    except Theme.DoesNotExist:
+        return '#2f3c4f'
+    return context
+##-------------------------##
 
 @register.filter
 def appearance_get_form_media_js(form):
