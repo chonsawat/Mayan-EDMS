@@ -48,6 +48,12 @@ class Theme(ExtraDataModelMixin, models.Model):
         verbose_name=_('Menu Color')
     )
 
+    # xxx = RGBColorField(
+    #     blank=True, 
+    #     help_text=_('Choose a color to change the Menu.'),
+    #     verbose_name=_('Menu Color')
+    # )
+
     class Meta:
         ordering = ('label',)
         verbose_name = _('Theme')

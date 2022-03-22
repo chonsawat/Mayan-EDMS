@@ -105,6 +105,15 @@ def color_background_menu():
     except Theme.DoesNotExist:
         return '#2f3c4f'
     return context
+
+@register.simple_tag
+def get_title():
+    try:
+        obj = Theme.objects.get(id=1)
+        context = obj.label
+    except Theme.DoesNotExist:
+        return '#2f3c4f'
+    return context
 ##-------------------------##
 
 @register.filter

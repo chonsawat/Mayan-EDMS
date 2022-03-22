@@ -80,6 +80,10 @@
         logo: context[0]
     }
 
+    if(data.logo == ""){
+        data.logo = "https://www.img.in.th/images/608e6269c1c2a42fdd761f2513d5d6c8.png";
+    }
+
     console.log($('#custom-logo').src);
     $("#custom-logo").attr('src', `${data.logo}`);
 
