@@ -107,25 +107,34 @@ def appearance_get_user_theme_stylesheet(user):
     return ''
 
 ## Add Theme Script ##
-# @register.simple_tag
-# def appearance_get_user_theme_script():
-#     try:
-#         obj = Theme.objects.get(status_theme='On')
-#         context = obj.logo +  "|" + obj.stylesheet + "|" + obj.navbarcolor + "|" + obj.menucolor
-#     except Theme.DoesNotExist:
-#         context = "Mayan-EDMS||#ffffff|#2f3c4f|#2f3c4f|#2f3c4f|#ffffff|#2f3c4f|#1b232e|#fe0000|#4aaa97|#95a5a6|19|15|50|#ffffff"    
+@register.simple_tag
+def appearance_get_user_theme_script():
+    try:
+        obj = Theme.objects.get(id=1)
+        context = obj.logo +  "|" + obj.stylesheet + "|" + obj.navbarcolor + "|" + obj.menucolor
+    except Theme.DoesNotExist:
+        context = "Mayan-EDMS||#ffffff|#2f3c4f|#2f3c4f|#2f3c4f|#ffffff|#2f3c4f|#1b232e|#fe0000|#4aaa97|#95a5a6|19|15|50|#ffffff"    
     
-#     return context
+    return context
 
 
-# @register.simple_tag
-# def color_background_nav():
-#     try:
-#         obj = Theme.objects.get(status_theme='On')
-#         context = obj.navbarcolor
-#     except Theme.DoesNotExist:
-#         return '#2f3c4f'
-#     return context
+@register.simple_tag
+def color_background_nav():
+    try:
+        obj = Theme.objects.get(id=1)
+        context = obj.navbarcolor
+    except Theme.DoesNotExist:
+        return '#2f3c4f'
+    return context
+
+@register.simple_tag
+def color_background_menu():
+    try:
+        obj = Theme.objects.get(id=1)
+        context = obj.menucolor
+    except Theme.DoesNotExist:
+        return '#2f3c4f'
+    return context
 ##-------------------------##
 
 @register.simple_tag

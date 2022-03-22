@@ -25,6 +25,17 @@
         font-size: 19px;
         line-height: 21px;
     }
+    .navbar-brand {
+        text-align: left;
+        width: 700px;
+    }
+    /*.navbar {
+        background-color: red;
+    }*/
+
+    /*.navbar-default .navbar-nav>.open>a,.navbar-default .navbar-nav>.open>a:hover,.navbar-default .navbar-nav>.open>a:focus {
+    background-color: red;
+    }*/
 
 
 }

@@ -14,12 +14,6 @@ from mayan.apps.events.decorators import method_event
 
 from .events import event_theme_created, event_theme_edited
 
-
-status = (
-    ('On','On'),
-    ('Off', 'Off'),
-)
-
 class Theme(ExtraDataModelMixin, models.Model):
     label = models.CharField(
         db_index=True, help_text=_('A short text describing the theme.'),
@@ -53,12 +47,29 @@ class Theme(ExtraDataModelMixin, models.Model):
         verbose_name=_('Menu Color')
     )
 
-    # status_theme = models.CharField(
-    #     max_length=100,
-    #     choices=status,
-    #     default=status[1][0],
-    #     verbose_name=_('Status Theme')
-    # )
+    btn_default_color = RGBColorField(
+        blank=True, 
+        help_text=_('Choose a color to change the Default Color Button.'),
+        verbose_name=_('Button Default Color')
+    )
+
+    btn_primary_color = RGBColorField(
+        blank=True, 
+        help_text=_('Choose a color to change the Primary Color Button.'),
+        verbose_name=_('Button Primary Color')
+    )
+
+    btn_success_color = RGBColorField(
+        blank=True, 
+        help_text=_('Choose a color to change the Success Color Button.'),
+        verbose_name=_('Button Success Color')
+    )
+
+    btn_danger_color = RGBColorField(
+        blank=True, 
+        help_text=_('Choose a color to change the Danger Color Button.'),
+        verbose_name=_('Button Danger Color')
+    )
 
     class Meta:
         ordering = ('label',)

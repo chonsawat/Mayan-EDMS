@@ -25,7 +25,53 @@
 {% block stylesheets %}{% endblock %}
 
 <style>
-    {% appearance_get_user_theme_stylesheet user=request.user %}
+    @media screen {
+            .navbar-brand {
+                text-align: left;
+                width: 700px;
+            }
+
+            .navbar {
+                background-color: {% color_background_nav %};
+            }
+        
+            .navbar-default .navbar-nav>.open>a,.navbar-default .navbar-nav>.open>a:hover,.navbar-default .navbar-nav>.open>a:focus {
+            background-color: {% color_background_nav %};
+            }
+
+            #menu-main{ /* สี body menu ทั้งหมด  */
+                background-color: {% color_background_menu %};
+            }
+            #accordion-sidebar .panel-body{ /* สี body ของแต่ละหัวข้อเมนู  */
+                background-color: {% color_background_menu %};
+            }
+
+            #accordion-sidebar .panel-title{ /* สีหัวข้อเมนู โดยที่ยังเปิดดู  */
+                background-color: {% color_background_menu %};
+            }
+
+            #accordion-sidebar .panel-body a{ /* สีหัวข้อ เวลาโดนเมาส์ชี้  */
+                background-color: {% color_background_menu %};
+            }
+
+            /*
+            .btn-primary{ /* สีตัวเลือก / choice 
+                background-color: red;
+            }
+            .btn-danger{ /* สีปุ่มแจ้งเตือน  
+                background-color: pink;
+            }
+            .btn-success{ /* สีปุ่ม success  
+                background-color: green;
+            }
+            .btn-default{ /* สีปุ่มทั่วไป  
+                background-color: yellow;
+            }
+
+            body{ /* สีพื้นหลังเว็บไซต์ 
+                background-color: yellow;
+            }*/
+        }
 </style>
 
 
